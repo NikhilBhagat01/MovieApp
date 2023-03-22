@@ -1,4 +1,4 @@
-# FactOpedia
+# MovieApp
 
 This is a Movie app where you can search and download movies available on the internet....
 
