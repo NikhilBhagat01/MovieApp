@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import "./styles.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Movie from "./pages/Movie";
+import SearchPage from "./pages/SearchPage";
+import Search from "./components/Search";
+import Movetotop from "./components/Movetotop";
+import { useState } from "react";
 
-function App() {
+export default function App() {
+  const [genre, setGenre] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalmovies, setTotalmovies] = useState();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Search
+        genre={genre}
+        setGenre={setGenre}
+        page={page}
+        setPage={setPage}
+        totalmovies={totalmovies}
+      />
+      <Movetotop />
+      <main className="main">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                genre={genre}
+                setTotalmovies={setTotalmovies}
+                page={page}
+                setPage={setPage}
+              />
+            }
+          />
+          <Route path="/movie/:id" element={<Movie />} />
+          <Route path="search/movie/:id" element={<Movie />} />
+          <Route
+            path="/search"
+            element={<SearchPage genre={genre} page={page} />}
+          />
+        </Routes>
+      </main>
     </div>
   );
 }
-
-export default App;
