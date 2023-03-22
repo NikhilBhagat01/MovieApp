@@ -7,7 +7,7 @@ This is a Movie app where you can search and download movies available on the in
 Clone the project
 
 ```bash
-  git clone https://github.com/NikhilBhagat01/FactOpedia.git
+  git clone https://github.com/NikhilBhagat01/MovieApp.git
 ```
 
 Go to the project directory
