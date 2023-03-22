@@ -30,4 +30,8 @@ Start the server
 
 # Demo
 
-[Demo](https://fact-opedia.vercel.app/)
+[Demo](https://movie-app-rouge-seven.vercel.app/)
+
+
+
+![movieapp](https://user-images.githubusercontent.com/96339472/226867560-b0c989c7-a9c1-4e38-bbd1-3c13e253e853.png)
