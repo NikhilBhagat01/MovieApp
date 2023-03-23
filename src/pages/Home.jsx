@@ -14,7 +14,7 @@ const Home = ({ genre, page, setTotalmovies, setPage }) => {
           genre === "All" ? "" : genre
         }&page=${page}`
       );
-      console.log(res.data.data.movie_count);
+      // console.log(res.data.data.movie_count);
       setTotalmovies(res.data.data.movie_count);
 
       setMovies(res.data.data.movies);

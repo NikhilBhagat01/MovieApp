@@ -71,8 +71,8 @@ const Movie = () => {
           {truncate(mov.description_intro, 400) || "N/A"}
         </p>
         <div className="dwdlinks">
-          {mov?.torrents?.map((m) => (
-            <a className="dwd" href={m.url}>
+          {mov?.torrents?.map((m, i) => (
+            <a key={i} className="dwd" href={m.url}>
               {m.quality}.{m.type.toUpperCase()}
             </a>
           ))}

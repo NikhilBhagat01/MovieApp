@@ -30,7 +30,10 @@ const Search = ({ setGenre, genre, page, setPage, totalmovies }) => {
     "Western",
   ];
 
-  console.log(genre);
+  const path = window.location.pathname;
+  // console.log(path.includes("movie"));
+
+  // console.log(genre);
   const [query, setQuery] = useState("");
   // console.log(typeof page);
 
@@ -44,8 +47,14 @@ const Search = ({ setGenre, genre, page, setPage, totalmovies }) => {
   };
 
   const handleGenre = (e) => {
-    setPage(1);
-    setGenre(e.target.value);
+    if (path.includes("movie")) {
+      navigate("/");
+      setPage(1);
+      setGenre(e.target.value);
+    } else {
+      setPage(1);
+      setGenre(e.target.value);
+    }
   };
 
   const handleKeyDown = (event) => {

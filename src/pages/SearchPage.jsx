@@ -16,7 +16,7 @@ const SearchPage = ({ genre }) => {
         `https://yts.mx/api/v2/list_movies.json?query_term=${query}&genre=${genre}`
       );
       setSearchResult(res.data.data.movies);
-      console.log(res.data.data.movies);
+      // console.log(res.data.data.movies);
     };
 
     fetchBySearch();
