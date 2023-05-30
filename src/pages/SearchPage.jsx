@@ -5,6 +5,7 @@ import Card from "../components/Card";
 
 const SearchPage = ({ genre }) => {
   const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
 
   const query = searchParams.get("q");
   const [searchResult, setSearchResult] = useState([]);
@@ -12,11 +13,16 @@ const SearchPage = ({ genre }) => {
 
   useEffect(() => {
     const fetchBySearch = async () => {
-      const res = await axios.get(
-        `https://yts.mx/api/v2/list_movies.json?query_term=${query}&genre=${genre}`
-      );
-      setSearchResult(res.data.data.movies);
-      // console.log(res.data.data.movies);
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          `https://yts.mx/api/v2/list_movies.json?query_term=${query}&genre=${genre}`
+        );
+        setLoading(false);
+        setSearchResult(res.data.data.movies);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchBySearch();
@@ -26,7 +32,20 @@ const SearchPage = ({ genre }) => {
       <h3 className="searchtext">
         Search Results For : <span>{query.toUpperCase()}</span>
       </h3>
-      {searchResult?.length !== 0 ? (
+
+      {loading ? (
+        <h2
+          style={{
+            color: "white",
+            marginLeft: "9px",
+            marginTop: "40px",
+            fontSize: "17px",
+            textAlign: "center",
+          }}
+        >
+          Searching...
+        </h2>
+      ) : searchResult?.length !== 0 ? (
         <>
           {" "}
           <div className={searchResult?.length < 4 ? "smallgrid" : "cards"}>
@@ -40,6 +59,21 @@ const SearchPage = ({ genre }) => {
           <h2 className="searchtext mt">No Movies Found </h2>
         </>
       )}
+
+      {/* {searchResult?.length !== 0 ? (
+        <>
+          {" "}
+          <div className={searchResult?.length < 4 ? "smallgrid" : "cards"}>
+            {searchResult?.map((m) => (
+              <Card key={m.id} m={m} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 className="searchtext mt">No Movies Found </h2>
+        </>
+      )} */}
     </div>
   );
 };

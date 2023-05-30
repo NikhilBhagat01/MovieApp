@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar setPage={setPage} setGenre={setGenre} />
       <Search
         genre={genre}
         setGenre={setGenre}

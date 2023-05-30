@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setPage, setGenre }) => {
+  const navigate = useNavigate();
+  const handleHome = () => {
+    setPage(1);
+    setGenre("");
+    navigate("/");
+  };
   return (
     <div className="navbar">
-      <Link to="/" className="link">
+      <span className="link" onClick={handleHome}>
         MOVIE APP
-      </Link>
+      </span>
     </div>
   );
 };

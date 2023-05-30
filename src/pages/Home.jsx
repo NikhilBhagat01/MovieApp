@@ -9,15 +9,19 @@ const Home = ({ genre, page, setTotalmovies, setPage }) => {
   // console.log(genre);
   useEffect(() => {
     const fetchMovies = async () => {
-      const res = await axios.get(
-        `https://yts.mx/api/v2/list_movies.json?genre=${
-          genre === "All" ? "" : genre
-        }&page=${page}`
-      );
-      // console.log(res.data.data.movie_count);
-      setTotalmovies(res.data.data.movie_count);
+      try {
+        const res = await axios.get(
+          `https://yts.mx/api/v2/list_movies.json?genre=${
+            genre === "All" ? "" : genre
+          }&page=${page}`
+        );
+        // console.log(res.data.data.movie_count);
+        setTotalmovies(res.data.data.movie_count);
 
-      setMovies(res.data.data.movies);
+        setMovies(res.data.data.movies);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchMovies();
